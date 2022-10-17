@@ -18,9 +18,24 @@ public class Grille {
             }
         }
     }
-    public char evalCase(int ligne, int colonne){
+
+    /**
+     Accesseur d'une case du plateau
+     @param ligne - numéro de ligne
+     @param colonne - numéro de colonne
+     @return la valeaur en (ligne,colonne) de la Grille
+     @throws ArrayIndexOutOfBoundsException  si la ligne ou la colonne n'est pas dans [o..nDimension[
+     */
+    public  char evalCase(int ligne, int colonne){
         assert(0 <= ligne && ligne < nDimension && 0 <= colonne && colonne < nDimension);
-        return grille[ligne][colonne];
+        char c;
+        try{
+        c=  grille[ligne][colonne];}
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("ArrayIndexOutOfBoundsException , ligne ou colonne a invalide");
+            c='#';
+        }
+        return c;
     }
 
 }
