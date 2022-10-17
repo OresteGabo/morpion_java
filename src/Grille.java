@@ -38,8 +38,6 @@ public class Grille {
         return c;
     }
 
-
-
     /**
      Modifieur d'une case du plateau
      @param ligne - numéro de ligne
@@ -49,6 +47,16 @@ public class Grille {
      void modifierCase(int ligne, int colonne, char valeur){
         assert(0 <= ligne && ligne < nDimension && 0 <= colonne && colonne < nDimension);
         grille[ligne][colonne] = valeur;
+    }
+
+    /**
+     Test de case dans un plateau
+     @param nLigne - numéro de ligne
+     @param nColonne - numéro de colonne
+     @return true(vrai) si (nLigne, nColonne) est dans le plateau
+     */
+    boolean dansPlateau(int nLigne, int nColonne){
+        return (0 <= nLigne && nLigne < nDimension && 0 <= nColonne && nColonne <nDimension);
     }
 
 }
