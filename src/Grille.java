@@ -21,8 +21,8 @@ public class Grille {
 
     /**
      Accesseur d'une case du plateau
-     @param ligne - numéro de ligne
-     @param colonne - numéro de colonne
+     @param ligne numéro de ligne
+     @param colonne numéro de colonne
      @return la valeaur en (ligne,colonne) de la Grille
      @throws ArrayIndexOutOfBoundsException  si la ligne ou la colonne n'est pas dans [o..nDimension[
      */
@@ -40,22 +40,22 @@ public class Grille {
 
     /**
      Modifieur d'une case du plateau
-     @param ligne - numéro de ligne
-     @param colonne - numéro de colonne
-     @param valeur - la nouvelle valeur
+     @param ligne numéro de ligne
+     @param colonne numéro de colonne
+     @param valeur la nouvelle valeur
      */
-     void modifierCase(int ligne, int colonne, char valeur){
+     public void modifierCase(int ligne, int colonne, char valeur){
         assert(0 <= ligne && ligne < nDimension && 0 <= colonne && colonne < nDimension);
         grille[ligne][colonne] = valeur;
     }
 
     /**
      Test de case dans un plateau
-     @param nLigne - numéro de ligne
-     @param nColonne - numéro de colonne
+     @param nLigne numéro de ligne
+     @param nColonne numéro de colonne
      @return true(vrai) si (nLigne, nColonne) est dans le plateau
      */
-    boolean dansPlateau(int nLigne, int nColonne){
+    public boolean dansPlateau(int nLigne, int nColonne){
         return (0 <= nLigne && nLigne < nDimension && 0 <= nColonne && nColonne <nDimension);
     }
 
