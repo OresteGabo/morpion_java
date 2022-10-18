@@ -178,5 +178,31 @@ public class Grille {
         if(joueur == 'X') return 'O';
         return 'X';
     }
+
+    /**
+     Teste un alignement de trois cases depuis (ix,jx)
+     @param joueur - numéro de joueur
+     @param ix - ligne de départ
+     @param jx - colonne de début
+     @param iincr - incrément en ligne
+     @param jincr - incrément en colonne
+     @return Vrai si alignement, Faux sinon
+     */
+
+    //TODO La fonction pour l'instant, est pour le plateau de taille 3X3, il faut plustard la rendre dynamique
+    boolean alignement(int joueur, int ix, int jx, int iincr, int jincr)
+    {
+        assert(joueur == 'X' || joueur == 'O');
+        boolean b = true;
+        int k = 0;
+        while (k< dimension && b)
+        {
+            b = b && (evalCase(ix,jx) == joueur);
+            ix += iincr;
+            jx += jincr;
+            ++k;
+        }
+        return b;
+    }
 }
 
