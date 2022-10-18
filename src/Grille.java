@@ -1,3 +1,8 @@
+/**
+ * @author : MUHIRWA GABO Oreste (muhirwa.g.oreste@gmail.com)
+ * @version 1.0
+ */
+
 import java.util.Scanner;
 
 public class Grille {
@@ -6,8 +11,9 @@ public class Grille {
     private char[][] grille;
 
     public Grille(int dimension, char libre) {
+        assert(dimension>2);
         this.dimension = dimension;
-        this.libre = libre;//"." libre doit etre un point, une espace vide, dans un console, et un bouton avec rien dans l'interface graphique
+        this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
 
         grille = new char[dimension][dimension];
         initialiserPlateau();
@@ -25,8 +31,7 @@ public class Grille {
      Accesseur d'une case du plateau
      @param ligne numéro de ligne
      @param colonne numéro de colonne
-     @return la valeaur en (ligne,colonne) de la Grille
-     @throws ArrayIndexOutOfBoundsException  si la ligne ou la colonne n'est pas dans [o..dimension[
+     @return la valeur en (ligne, colonne) de la Grille
      */
     public  char evalCase(int ligne, int colonne){
         assert(0 <= ligne && ligne < dimension && 0 <= colonne && colonne < dimension);
@@ -172,58 +177,63 @@ public class Grille {
     }
 
     /**
-     @return X ou O en alternant, chaqun son tour
+     @return X ou O en alternant, chacun son tour
      */
     private char joueurSuivant (char joueur) {
         if(joueur == 'X') return 'O';
         return 'X';
     }
 
+
     /**
-     Teste un alignement de trois cases depuis (ix,jx)
+     Teste un alignement de vertical ou horizontal
      @param joueur - numéro de joueur
-     @param ix - ligne de départ
-     @param jx - colonne de début
-     @param iincr - incrément en ligne
-     @param jincr - incrément en colonne
      @return Vrai si alignement, Faux sinon
      */
-
-    //TODO La fonction pour l'instant, est pour le plateau de taille 3X3, il faut plustard la rendre dynamique
-    private boolean alignement(int joueur, int ix, int jx, int iincr, int jincr)
-    {
+    private boolean alignementHV(char joueur){
         assert(joueur == 'X' || joueur == 'O');
-        boolean b = true;
-        int k = 0;
-        while (k< dimension && b)
-        {
-            b = b && (evalCase(ix,jx) == joueur);
-            ix += iincr;
-            jx += jincr;
-            ++k;
+        for(int x=0;x<dimension;x++){
+            for(int y=0;y<dimension-2;y++){
+                if(evalCase(x,y)==joueur && evalCase(x,y+1)==joueur && evalCase(x,y+2)==joueur )
+                    return true;
+                if(evalCase(y,x)==joueur && evalCase(y+1,x)==joueur && evalCase(y+2,x)==joueur )
+                    return true;
+            }
         }
-        return b;
+        return false;
     }
 
     /**
-     Teste si joueur à gagné
+     Teste un alignement dans le diagonal
      @param joueur - numéro de joueur
-     @return Vrai si joueur à gagné, faux sinon
+     @return Vrai si alignement, Faux sinon
      */
-
-    //TODO Il faut trouver un moyen de faire une boucle pour que la fonction soit dynamique, peut importe sa dimansion
-    private boolean victoire(char joueur){
-        assert (joueur == 'O' || joueur == 'X');
-        return alignement(joueur,0,0,0,1) // ligne 0
-                || alignement(joueur, 1,0,0,1) // ligne 1
-                || alignement(joueur, 2,0,0,1) // ligne 2
-                || alignement(joueur, 0,0,1,0) // colonne 0
-                || alignement(joueur, 0,1,1,0) // colonne 1
-                || alignement(joueur, 0,2,1,0) // colonne 2
-                || alignement(joueur, 0,0,1,1) // diag 1
-                ;
+    private boolean alignementDiagonal(char joueur){
+        assert(joueur == 'X' || joueur == 'O');
+        for(int x=0;x<dimension-2;x++){
+            for(int y=0;y<dimension-2;y++){
+                if(evalCase(x,y)==joueur && evalCase(x+1,y+1)==joueur && evalCase(x+2,y+2)==joueur )
+                    return true;
+            }
+        }
+        for(int x=dimension-1;x>1;x--){
+            for(int y=dimension-1;y>1;y--){
+                if(evalCase(x,y)==joueur && evalCase(x-1,y-1)==joueur && evalCase(x-2,y-2)==joueur )
+                    return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     Teste si joueur a gagné
+     @param joueur - numéro de joueur
+     @return Vrai si joueur a gagné, faux sinon
+     */
+    private boolean victoire(char joueur){
+        assert (joueur == 'O' || joueur == 'X');
+        return alignementHV(joueur) || alignementDiagonal(joueur);
+    }
     public void lancer(){
 
         initialiserPlateau();
