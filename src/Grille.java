@@ -170,5 +170,13 @@ public class Grille {
         }
         return true;
     }
+
+    /**
+     @return X ou O en alternant, chaqun son tour
+     */
+    private char joueurSuivant (char joueur) {
+        if(joueur == 'X') return 'O';
+        return 'X';
+    }
 }
 
