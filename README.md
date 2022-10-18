@@ -16,3 +16,6 @@ source [wikipedia](https://fr.wikipedia.org/wiki/Morpion_(jeu))
 La saisie se fait sous la console, en saisissant la position du pion (x et y)
 <img alt="Capture d'écran" src="screenshot.png" width="300"/>
 
+Le plateau est dynamique, il s'adapte à toutes dimensions
+<img alt="Capture d'écran" src="screenshot_bigger_win.jpeg" width="300"/>
+
