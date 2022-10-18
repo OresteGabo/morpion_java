@@ -157,9 +157,13 @@ public class Grille {
         colonne = keyboard.nextInt();
 
 
-        if(! dansPlateau(ligne,colonne)){
+        while(! dansPlateau(ligne,colonne)){
             System.out.print("ERREUR !");
-            jouer(joueur);
+            System.out.print("x:");
+            ligne = keyboard.nextInt();
+
+            System.out.print("y:");
+            colonne = keyboard.nextInt();
         }
         modifierCase(ligne,colonne,joueur);
     }
