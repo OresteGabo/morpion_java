@@ -223,5 +223,28 @@ public class Grille {
                 || alignement(joueur, 0,0,1,1) // diag 1
                 ;
     }
+
+    public void lancer(){
+
+        initialiserPlateau();
+        afficherPlateau(4,5);
+        char joueur = 'X';
+        boolean finJeu = false;
+        while (! finJeu){
+            jouer(joueur);
+            afficherPlateau(5,5);
+            if(victoire(joueur)){
+                System.out.println(String.format("Le joueur:%s gagne ",joueur));
+                finJeu = true;
+            }
+            else if (plateauBloque()){
+                System.out.println("Perdant");
+                finJeu = true;
+            }
+            else{
+                joueur = joueurSuivant (joueur);
+            }
+        }
+    }
 }
 
