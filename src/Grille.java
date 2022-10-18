@@ -158,5 +158,17 @@ public class Grille {
         }
         modifierCase(ligne,colonne,joueur);
     }
+
+    /**
+     @return true (vrai) si le plateau est rempli, donc plus de place pour jouer
+    */
+    private boolean plateauBloque() {
+        for(int i = 0; i < dimension; ++i){
+            for(int j = 0; j < dimension; ++j){
+                if(evalCase(i,j) == libre) return false;
+            }
+        }
+        return true;
+    }
 }
 
