@@ -260,5 +260,13 @@ public class Grille {
             }
         }
     }
+    /**
+     La dimension de la grille
+     Cette fonctionsera Deprecated, apres avoir mise en place la grille rectangle
+     @return Dimension de la grille
+     */
+    public int getDimension(){
+        return dimension;
+    }
 }
 
