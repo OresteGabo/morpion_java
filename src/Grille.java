@@ -190,7 +190,7 @@ public class Grille {
      */
 
     //TODO La fonction pour l'instant, est pour le plateau de taille 3X3, il faut plustard la rendre dynamique
-    boolean alignement(int joueur, int ix, int jx, int iincr, int jincr)
+    private boolean alignement(int joueur, int ix, int jx, int iincr, int jincr)
     {
         assert(joueur == 'X' || joueur == 'O');
         boolean b = true;
@@ -203,6 +203,25 @@ public class Grille {
             ++k;
         }
         return b;
+    }
+
+    /**
+     Teste si joueur à gagné
+     @param joueur - numéro de joueur
+     @return Vrai si joueur à gagné, faux sinon
+     */
+
+    //TODO Il faut trouver un moyen de faire une boucle pour que la fonction soit dynamique, peut importe sa dimansion
+    private boolean victoire(char joueur){
+        assert (joueur == 'O' || joueur == 'X');
+        return alignement(joueur,0,0,0,1) // ligne 0
+                || alignement(joueur, 1,0,0,1) // ligne 1
+                || alignement(joueur, 2,0,0,1) // ligne 2
+                || alignement(joueur, 0,0,1,0) // colonne 0
+                || alignement(joueur, 0,1,1,0) // colonne 1
+                || alignement(joueur, 0,2,1,0) // colonne 2
+                || alignement(joueur, 0,0,1,1) // diag 1
+                ;
     }
 }
 
