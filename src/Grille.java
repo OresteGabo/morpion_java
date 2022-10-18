@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class Grille {
     private final int dimension;
@@ -67,7 +67,7 @@ public class Grille {
      @param nbEspaces nombre d'espaces entre les valeurs
      @param nbEspacesCote nombres d'espaces à coté des valeurs
      */
-    void afficherPlateau(int nbEspaces,int nbEspacesCote){
+    public void afficherPlateau(int nbEspaces,int nbEspacesCote){
         assert(nbEspaces>=0 && nbEspacesCote>=0);
         System.out.println("             Morpion version 1.0");
 
@@ -137,5 +137,26 @@ public class Grille {
 
     }
 
+
+    /**
+     @param joueur - Lettre du joueur(X ou O)
+     */
+
+    private void jouer (char joueur){
+        int colonne, ligne;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("x:");
+        ligne = keyboard.nextInt();
+
+        System.out.print("y:");
+        colonne = keyboard.nextInt();
+
+
+        if(! dansPlateau(ligne,colonne)){
+            System.out.print("ERREUR !");
+            jouer(joueur);
+        }
+        modifierCase(ligne,colonne,joueur);
+    }
 }
 
