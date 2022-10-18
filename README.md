@@ -7,9 +7,10 @@ source [wikipedia](https://fr.wikipedia.org/wiki/Morpion_(jeu))
 
 ## Les versions attendues à la fin du projet
 
-- La version 1^ se jouera sur la console, avec une grille de 3X3
-- La version 2^ se jouera dans une interface graphique avec des boutons sur une grille de 3X3
-- La version 3^ se jouera dans l'interface graphique, avec une dimension dynamique
+- La version 1^ se jouera sur la console, avec une grille carré de 3X3, 4X4 ... nxn
+- La version 2^ se jouera dans une interface graphique avec des boutons sur une grille carrée de 3X3, 4X4 ... nxn
+- La version 3^ se jouera sur une interface graphique, avec une grille dynamique et plusieurs joueurs
+
 
 
 La saisie se fait sous la console, en saisissant la position du pion (x et y)
