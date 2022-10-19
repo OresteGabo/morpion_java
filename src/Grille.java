@@ -6,7 +6,7 @@
 import java.util.Scanner;
 
 public class Grille {
-    private final int dimension;
+    private int dimension;
     private final char libre;
     private char[][] grille;
 
@@ -144,7 +144,7 @@ public class Grille {
 
 
     /**
-     @param joueur - Lettre du joueur(X ou O)
+     @param joueur Lettre du joueur(X ou O)
      */
 
     private void jouer (char joueur){
@@ -191,7 +191,7 @@ public class Grille {
 
     /**
      Teste un alignement de vertical ou horizontal
-     @param joueur - numéro de joueur
+     @param joueur numéro de joueur
      @return Vrai si alignement, Faux sinon
      */
     private boolean alignementHV(char joueur){
@@ -209,7 +209,7 @@ public class Grille {
 
     /**
      Teste un alignement dans le diagonal
-     @param joueur - numéro de joueur
+     @param joueur numéro de joueur
      @return Vrai si alignement, Faux sinon
      */
     private boolean alignementDiagonal(char joueur){
@@ -231,7 +231,7 @@ public class Grille {
 
     /**
      Teste si joueur a gagné
-     @param joueur - numéro de joueur
+     @param joueur numéro de joueur
      @return Vrai si joueur a gagné, faux sinon
      */
     private boolean victoire(char joueur){
@@ -267,6 +267,17 @@ public class Grille {
      */
     public int getDimension(){
         return dimension;
+    }
+
+    /**
+     Affectation de la dimension,
+     Le jeu doit recommencer une fois la dimension changer
+     @param dimension nouvelle dimension
+     */
+    public void setDimension(int dimension){
+        this.dimension=dimension;
+        initialiserPlateau();
+
     }
 }
 
