@@ -55,6 +55,14 @@ public class InterfaceGraphique extends JFrame{
     }
 
     /**
+     * Redimmensionner le layout (Grid) en ligne et en colonne
+     */
+    private void redimensionnerBoutonsLayout(){
+        buttonsLayout.setColumns(grille.getDimension());
+        buttonsLayout.setRows(grille.getDimension());
+    }
+
+    /**
      * La creation du tableau de boutons,
      * et le remplissage du tableau avec les boutons
      */
