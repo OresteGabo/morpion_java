@@ -23,7 +23,11 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         initialiserPlateau();
     }
 
-    private void initialiserPlateau (){
+
+    /**
+     * Le plateau est remis à l'état initial avec toutes les valeurs libre
+     */
+    public void initialiserPlateau (){
         indiceJoueurActuel=0;
         for(int ligne = 0; ligne < dimension; ++ligne){
             for(int colonne = 0; colonne < dimension; ++colonne){
@@ -44,7 +48,6 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         } catch (JoueurExisteException e) {
             e.printStackTrace();
         }
-        
     }
 
    /**
@@ -106,7 +109,8 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
     /**
      Affichage du plateau
      @param nbEspaces nombre d'espaces entre les valeurs
-     @param nbEspacesCote nombres d'espaces à coté des valeurs
+      @param nbEspacesCote nombres d'espaces à coté des valeurs
+      @deprecated
      */
     public void afficherPlateau(int nbEspaces,int nbEspacesCote){
         assert(nbEspaces>=0 && nbEspacesCote>=0);
@@ -131,14 +135,14 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
 
 
 
-        //Le debut du ligne qui dessine les underscore
+        //Le debut de la ligne qui dessine l'underscore
         System.out.print(" # X");
         for(int x=0;x<nbEspacesCote;x++){
             System.out.print(' ');
         }
         /*
-        * nbEspaces* (dimension-1) vont nous donner ne nombre de underscores à mettre, pour couvrire les espaces entre les element du grilles
-        * (nbEspacesMin+dimension)  vont ajouter les underscores à la places des elements du grilles, ainsi que le nombre despaceMin à la fin
+        * nbEspaces* (dimension-1) vont nous donner ne nombre d'underscores à mettre, pour couvrir les espaces entre les element du grille
+        * (nbEspacesMin+dimension) vont ajouter les underscores à la place des elements du grille, ainsi que le nombre despaceMin à la fin
         * */
         for(int x=0;x<(nbEspaces*(dimension-1))+(dimension);x++) {
             System.out.print("_");
@@ -147,11 +151,11 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
             System.out.print(' ');
         }
         System.out.println("#");
-        //Fin du ligne des underscore
+        //Fin de la ligne des underscores
 
 
 
-        //Début du ligne qui affiche les valeurs du grille
+        //Début de la ligne qui affiche les valeurs de la grille
         for(int i = 0; i < dimension; ++i){
             System.out.print(" # "+i);
             for(int x=0;x<nbEspacesCote;x++){
@@ -165,7 +169,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
             }
             System.out.println("#");
         }
-        //Fin du ligne qui affiche les valeurs du grille
+        //Fin de la ligne qui affiche les valeurs de la grille
 
 
         //Hashtag pour le mur du bas
@@ -180,6 +184,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
 
     /**
      @param joueur Lettre du joueur(X ou O)
+     @deprecated
      */
 
     private void jouer (char joueur){
@@ -217,11 +222,37 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
 
     /**
      @return X ou O en alternant, chacun son tour
+     @deprecated la fonction n'est plus utile, sauf dans la version 1 de la console
      */
     private char joueurSuivant (char joueur) {
         if(joueur == 'X') return 'O';
         return 'X';
     }
+
+    /**
+     @return un joueur sur une liste chainée circulaire
+     */
+    private Joueur joueurSuivant (){
+        if(indiceJoueurActuel+1<joueurs.size())
+            return joueurs.get(indiceJoueurActuel+1);
+        else
+            return joueurs.get(0);
+    }
+
+    /**
+     * L'indice du joueur actuel change, pour le suivant ou le 1er si le précédent était le dernier de la liste.
+     */
+    private void passerAuJoueurSuivant(){
+        if(indiceJoueurActuel+1<joueurs.size())
+            indiceJoueurActuel++;
+        else
+            indiceJoueurActuel=0;
+    }
+
+    public Joueur getJoueurActuel(){
+        return joueurs.get(indiceJoueurActuel);
+    }
+
 
 
     /**
@@ -273,6 +304,10 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         assert (joueur == 'O' || joueur == 'X');
         return alignementHV(joueur) || alignementDiagonal(joueur);
     }
+
+    /**
+     * @deprecated
+     */
     public void lancer(){
 
         initialiserPlateau();
