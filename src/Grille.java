@@ -13,7 +13,7 @@ public class Grille {
     public Grille(int dimension, char libre) {
         assert(dimension>2);
         this.dimension = dimension;
-        this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
+this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
 
         grille = new char[dimension][dimension];
         initialiserPlateau();
@@ -171,7 +171,7 @@ public class Grille {
     /**
      @return true (vrai) si le plateau est rempli, donc plus de place pour jouer
     */
-    private boolean plateauBloque() {
+    public boolean plateauBloque() {
         for(int i = 0; i < dimension; ++i){
             for(int j = 0; j < dimension; ++j){
                 if(evalCase(i,j) == libre) return false;
@@ -234,7 +234,7 @@ public class Grille {
      @param joueur numéro de joueur
      @return Vrai si joueur a gagné, faux sinon
      */
-    private boolean victoire(char joueur){
+    public boolean victoire(char joueur){
         assert (joueur == 'O' || joueur == 'X');
         return alignementHV(joueur) || alignementDiagonal(joueur);
     }
@@ -275,6 +275,7 @@ public class Grille {
      @param dimension nouvelle dimension
      */
     public void setDimension(int dimension){
+        assert(dimension>2);
         this.dimension=dimension;
         initialiserPlateau();
 
