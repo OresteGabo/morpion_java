@@ -52,6 +52,17 @@ public class InterfaceGraphique extends JFrame{
                 buttonsPanel.add(bouttons[x][y]);
             }
         }
+        /**
+         * Tous les boutons doivent réagir à l'événement de click
+         */
+        Handler handler=new Handler();
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                bouttons[x][y].addActionListener(handler);
+            }
+        }
+        reinitialiserButton.addActionListener(handler);
+
         buttonsPanel.setBackground(Color.darkGray);
         buttonsPanel.setLayout(buttonsLayout);
         conteneur.add(buttonsPanel);
@@ -76,5 +87,15 @@ public class InterfaceGraphique extends JFrame{
         actualiser();
     }
 
+    /**
+     * La classe interne inscrite pour recevoir les événements d'actions de boutons
+     */
+    private class Handler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
 }
 
