@@ -3,23 +3,28 @@
  * @version 1.0
  */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Grille {
     private int dimension;
     private final char libre;
     private char[][] grille;
+    private int indiceJoueurActuel;
+    private ArrayList<Joueur> joueurs;
+    
 
     public Grille(int dimension, char libre) {
         assert(dimension>2);
         this.dimension = dimension;
 this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
-
+   
         grille = new char[dimension][dimension];
         initialiserPlateau();
     }
 
     private void initialiserPlateau (){
+        indiceJoueurActuel=0;
         for(int ligne = 0; ligne < dimension; ++ligne){
             for(int colonne = 0; colonne < dimension; ++colonne){
                 grille[ligne][colonne] = libre;
@@ -27,6 +32,22 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         }
     }
 
+   /**
+    * Ajouter un nouveau joueur
+    * @param joueur Le nouveau joueur à ajouter
+    * @throws JoueurExisteException On ne doit pas ajouter un joueur qui est déja dedans
+    */
+    public void ajouterJoueur(Joueur joueur) throws JoueurExisteException {
+        assert(!joueurs.contains(joueur));
+
+        for(int x=0;x<joueurs.size();x++){
+            if(joueur.equals(joueurs.get(x))){
+                throw new JoueurExisteException("On ne peux pas avoir 2 joueurs qui ont le meme symbole");
+            }
+        }
+        joueurs.add(joueur);
+        
+    }
     /**
      Accesseur d'une case du plateau
      @param ligne numéro de ligne
@@ -85,7 +106,6 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         for(int x=0;x<nbEspacesCote+2;x++){
             System.out.print(' ');
         }
-        //System.out.print("\n #      ");
         for(int x=0;x<dimension;x++){
             System.out.print(x);
             for(int y=0;y<((x==dimension-1)? nbEspacesCote:nbEspaces);y++){
@@ -141,7 +161,6 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         System.out.println();
 
     }
-
 
     /**
      @param joueur Lettre du joueur(X ou O)
