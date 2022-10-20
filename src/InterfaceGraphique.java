@@ -68,5 +68,13 @@ public class InterfaceGraphique extends JFrame{
         }
     }
 
+    /**
+    * La fonction pour initialiser le jeu et recommencer au début
+    * */
+    private void initialiser(){
+        grille.initialiserPlateau();
+        actualiser();
+    }
+
 }
 
