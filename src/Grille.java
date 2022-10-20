@@ -12,12 +12,13 @@ public class Grille {
     private char[][] grille;
     private int indiceJoueurActuel;
     private ArrayList<Joueur> joueurs=new ArrayList<Joueur>();
-    
+
 
     public Grille(int dimension, char libre) {
         assert(dimension>2);
         this.dimension = dimension;
-this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
+        initialiserJoueurs();
+        this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
 
         grille = new char[dimension][dimension];
         initialiserPlateau();
@@ -51,11 +52,11 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         }
     }
 
-   /**
-    * Ajouter un nouveau joueur
-    * @param joueur Le nouveau joueur à ajouter
-    * @throws JoueurExisteException On ne doit pas ajouter un joueur qui est déja dedans
-    */
+    /**
+     * Ajouter un nouveau joueur
+     * @param joueur Le nouveau joueur à ajouter
+     * @throws JoueurExisteException On ne doit pas ajouter un joueur qui est déja dedans
+     */
     public void ajouterJoueur(Joueur joueur) throws JoueurExisteException {
         assert(!joueurs.contains(joueur));
 
@@ -65,7 +66,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
             }
         }
         joueurs.add(joueur);
-        
+
     }
     /**
      Accesseur d'une case du plateau
@@ -110,8 +111,8 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
     /**
      Affichage du plateau
      @param nbEspaces nombre d'espaces entre les valeurs
-      @param nbEspacesCote nombres d'espaces à coté des valeurs
-      @deprecated
+     @param nbEspacesCote nombres d'espaces à coté des valeurs
+     @deprecated
      */
     public void afficherPlateau(int nbEspaces,int nbEspacesCote){
         assert(nbEspaces>=0 && nbEspacesCote>=0);
@@ -142,9 +143,9 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
             System.out.print(' ');
         }
         /*
-        * nbEspaces* (dimension-1) vont nous donner ne nombre d'underscores à mettre, pour couvrir les espaces entre les element du grille
-        * (nbEspacesMin+dimension) vont ajouter les underscores à la place des elements du grille, ainsi que le nombre despaceMin à la fin
-        * */
+         * nbEspaces* (dimension-1) vont nous donner ne nombre d'underscores à mettre, pour couvrir les espaces entre les element du grille
+         * (nbEspacesMin+dimension) vont ajouter les underscores à la place des elements du grille, ainsi que le nombre despaceMin à la fin
+         * */
         for(int x=0;x<(nbEspaces*(dimension-1))+(dimension);x++) {
             System.out.print("_");
         }
@@ -211,7 +212,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
 
     /**
      @return true (vrai) si le plateau est rempli, donc plus de place pour jouer
-    */
+     */
     public boolean plateauBloque() {
         for(int i = 0; i < dimension; ++i){
             for(int j = 0; j < dimension; ++j){
@@ -306,7 +307,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         return alignementHV(joueur) || alignementDiagonal(joueur);
     }
 
-    /**
+     /**
      * @deprecated
      */
     public void lancer(){
