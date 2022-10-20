@@ -104,6 +104,29 @@ public class InterfaceGraphique extends JFrame{
     }
 
     /**
+     * Les boutons doivent être désactivés une fois le jeu est fini
+     */
+    private void desactiverLesBoutons(){
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                bouttons[x][y].setEnabled(false);
+            }
+        }
+    }
+
+    /**
+     * Les boutons doivent être réactivés une fois le jeu commence
+     */
+    private void reactiverLesBoutons(){
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                bouttons[x][y].setEnabled(true);
+            }
+        }
+    }
+
+
+    /**
     * La fonction pour initialiser le jeu et recommencer au début
     * */
     private void initialiser(){
