@@ -12,6 +12,7 @@ public class InterfaceGraphique extends JFrame{
     private GridLayout buttonsLayout;
     private JButton reinitialiserButton;
     private JButton[][] bouttons;
+    
     public InterfaceGraphique(){
         super("Morpion");
         grille=new Grille(3,' ');
@@ -26,6 +27,8 @@ public class InterfaceGraphique extends JFrame{
         dimensionTF=new JTextField(String.format("%s",grille.getDimension()),5);
         conteneur.add(dimensionTF);
 
+
+
         reinitialiserButton=new JButton("Réinitialiser");
         conteneur.add(reinitialiserButton);
 
@@ -33,16 +36,12 @@ public class InterfaceGraphique extends JFrame{
         buttonsLayout=new GridLayout(grille.getDimension(), grille.getDimension());
 
 
-        JPanel buttonsPanel = new JPanel();
+        buttonsPanel = new JPanel();
+        creerBoutons();
+        ajouterBoutons();
+        donnerEvenementAuBoutons();
 
-        /**
-         * La creation du tableau de boutons
-         */
-        for(int x=0;x<grille.getDimension();x++){
-            for(int y=0;y<grille.getDimension();y++){
-                bouttons[x][y]=new JButton(String.format("%s",grille.evalCase(x,y)));
-            }
-        }
+        
 
         
         Handler handler=new Handler();
