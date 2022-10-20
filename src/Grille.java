@@ -12,13 +12,13 @@ public class Grille {
     private char[][] grille;
     private int indiceJoueurActuel;
     private ArrayList<Joueur> joueurs=new ArrayList<Joueur>();
-
+    
 
     public Grille(int dimension, char libre) {
         assert(dimension>2);
         this.dimension = dimension;
         initialiserJoueurs();
-        this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
+this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
 
         grille = new char[dimension][dimension];
         initialiserPlateau();
@@ -52,11 +52,11 @@ public class Grille {
         }
     }
 
-    /**
-     * Ajouter un nouveau joueur
-     * @param joueur Le nouveau joueur à ajouter
-     * @throws JoueurExisteException On ne doit pas ajouter un joueur qui est déja dedans
-     */
+   /**
+    * Ajouter un nouveau joueur
+    * @param joueur Le nouveau joueur à ajouter
+    * @throws JoueurExisteException On ne doit pas ajouter un joueur qui est déja dedans
+    */
     public void ajouterJoueur(Joueur joueur) throws JoueurExisteException {
         assert(!joueurs.contains(joueur));
 
@@ -66,7 +66,7 @@ public class Grille {
             }
         }
         joueurs.add(joueur);
-
+        
     }
     /**
      Accesseur d'une case du plateau
@@ -111,8 +111,8 @@ public class Grille {
     /**
      Affichage du plateau
      @param nbEspaces nombre d'espaces entre les valeurs
-     @param nbEspacesCote nombres d'espaces à coté des valeurs
-     @deprecated
+      @param nbEspacesCote nombres d'espaces à coté des valeurs
+      @deprecated
      */
     public void afficherPlateau(int nbEspaces,int nbEspacesCote){
         assert(nbEspaces>=0 && nbEspacesCote>=0);
@@ -143,9 +143,9 @@ public class Grille {
             System.out.print(' ');
         }
         /*
-         * nbEspaces* (dimension-1) vont nous donner ne nombre d'underscores à mettre, pour couvrir les espaces entre les element du grille
-         * (nbEspacesMin+dimension) vont ajouter les underscores à la place des elements du grille, ainsi que le nombre despaceMin à la fin
-         * */
+        * nbEspaces* (dimension-1) vont nous donner ne nombre d'underscores à mettre, pour couvrir les espaces entre les element du grille
+        * (nbEspacesMin+dimension) vont ajouter les underscores à la place des elements du grille, ainsi que le nombre despaceMin à la fin
+        * */
         for(int x=0;x<(nbEspaces*(dimension-1))+(dimension);x++) {
             System.out.print("_");
         }
@@ -212,7 +212,7 @@ public class Grille {
 
     /**
      @return true (vrai) si le plateau est rempli, donc plus de place pour jouer
-     */
+    */
     public boolean plateauBloque() {
         for(int i = 0; i < dimension; ++i){
             for(int j = 0; j < dimension; ++j){
@@ -307,7 +307,15 @@ public class Grille {
         return alignementHV(joueur) || alignementDiagonal(joueur);
     }
 
-     /**
+    /**
+     Teste si joueur a gagné
+     @return Vrai si joueur a gagné, faux sinon
+     */
+    public boolean victoire(){
+        return  alignementHV(getJoueurActuel().getSymbole()) || alignementDiagonal(getJoueurActuel().getSymbole());
+    }
+
+    /**
      * @deprecated
      */
     public void lancer(){
