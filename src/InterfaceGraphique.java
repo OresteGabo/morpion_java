@@ -68,7 +68,19 @@ public class InterfaceGraphique extends JFrame{
         conteneur.add(buttonsPanel);
 
     }
-     /**
+
+    /**
+     * Tous les boutons doivent réagir à l'événement de click
+     */
+    void donnerEvenementAuBoutons(){
+        Handler handler=new Handler();
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                bouttons[x][y].addActionListener(handler);
+            }
+        }
+    }
+    /**
      * Créer le tableau de boutons pour le jeu
      */
     private void actualiser(){
