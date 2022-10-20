@@ -158,7 +158,32 @@ public class InterfaceGraphique extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == reinitialiserButton) {
+                initialiser();
+                buttonsPanel.updateUI();
+            }else{
+                for(int x=0;x<grille.getDimension();x++){
+                    for(int y=0;y<grille.getDimension();y++){
+                        if(e.getSource()==bouttons[x][y]){
+                            System.out.println(String.format("Source of the click is x:%d  y:%d",x,y));
+                            grille.modifierCase(x,y,grille.getJoueurActuel().getSymbole());
 
+                            bouttons[x][y].setText(""+grille.evalCase(x,y));
+
+                            if(grille.victoire()){
+                                grille.getJoueurActuel().incrementerScore();
+                                System.out.println(String.format("Le joueur:%s gagne ",grille.getJoueurActuel().getSymbole()));
+                                desactiverLesBoutons();
+                            }else if(grille.plateauBloque()){
+                                System.out.println("Perdant");
+                                desactiverLesBoutons();
+                            }else{
+                                grille.passerAuJoueurSuivant();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
