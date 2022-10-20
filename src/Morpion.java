@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InterfaceGraphique extends JFrame{
+public class Morpion extends JFrame{
     //GUI Widgets
     private Grille grille;
 
@@ -13,7 +13,7 @@ public class InterfaceGraphique extends JFrame{
     private JButton reinitialiserButton;
     private JButton[][] bouttons;
     
-    public InterfaceGraphique(){
+    public Morpion(){
         super("Morpion");
         grille=new Grille(3,' ');
 
