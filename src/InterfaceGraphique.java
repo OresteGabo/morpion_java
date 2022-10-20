@@ -7,7 +7,6 @@ public class InterfaceGraphique extends JFrame{
     //GUI Widgets
     private Grille grille;
 
-    private boolean joueurX=true;
     JTextField dimensionTF;
     JPanel buttonsPanel;
     private GridLayout buttonsLayout;
@@ -57,6 +56,16 @@ public class InterfaceGraphique extends JFrame{
         buttonsPanel.setLayout(buttonsLayout);
         conteneur.add(buttonsPanel);
 
+    }
+     /**
+     * Créer le tableau de boutons pour le jeu
+     */
+    private void actualiser(){
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                bouttons[x][y].setText(String.format("%s",grille.evalCase(x,y)));
+            }
+        }
     }
 
 }
