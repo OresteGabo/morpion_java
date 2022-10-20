@@ -44,23 +44,9 @@ public class InterfaceGraphique extends JFrame{
             }
         }
 
-        /**
-         * Lajout de boutons dans le panel
-         */
-        for(int x=0;x<grille.getDimension();x++){
-            for(int y=0;y<grille.getDimension();y++){
-                buttonsPanel.add(bouttons[x][y]);
-            }
-        }
-        /**
-         * Tous les boutons doivent réagir à l'événement de click
-         */
+        
         Handler handler=new Handler();
-        for(int x=0;x<grille.getDimension();x++){
-            for(int y=0;y<grille.getDimension();y++){
-                bouttons[x][y].addActionListener(handler);
-            }
-        }
+        
         reinitialiserButton.addActionListener(handler);
 
         buttonsPanel.setBackground(Color.darkGray);
@@ -68,7 +54,19 @@ public class InterfaceGraphique extends JFrame{
         conteneur.add(buttonsPanel);
 
     }
-
+    /**
+     * L'ajout de boutons dans le panel
+     * Le panel doit d'abord etre vidé
+     */
+    void ajouterBoutons(){
+        buttonsPanel.removeAll();
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                buttonsPanel.add(bouttons[x][y]);
+            }
+        }
+    }
+    
     /**
      * Tous les boutons doivent réagir à l'événement de click
      */
