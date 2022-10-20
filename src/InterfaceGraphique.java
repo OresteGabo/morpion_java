@@ -137,8 +137,18 @@ public class InterfaceGraphique extends JFrame{
     * La fonction pour initialiser le jeu et recommencer au début
     * */
     private void initialiser(){
+        int newD=Integer.parseInt(dimensionTF.getText());
+        grille.setDimension(newD);
         grille.initialiserPlateau();
+
+        bouttons=null;
+        creerBoutons();
+        ajouterBoutons();
+        donnerEvenementAuBoutons();
+
+        reactiverLesBoutons();
         actualiser();
+        redimensionnerBoutonsLayout();
     }
 
     /**
