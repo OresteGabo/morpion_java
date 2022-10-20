@@ -11,14 +11,14 @@ public class Grille {
     private final char libre;
     private char[][] grille;
     private int indiceJoueurActuel;
-    private ArrayList<Joueur> joueurs;
+    private ArrayList<Joueur> joueurs=new ArrayList<Joueur>();
     
 
     public Grille(int dimension, char libre) {
         assert(dimension>2);
         this.dimension = dimension;
 this.libre = libre;//"." libre doit etre un point, une espace vide, dans le console de l'IDE, et un bouton avec rien dans l'interface graphique
-   
+
         grille = new char[dimension][dimension];
         initialiserPlateau();
     }
@@ -28,6 +28,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
      * Le plateau est remis à l'état initial avec toutes les valeurs libre
      */
     public void initialiserPlateau (){
+        grille=new char[dimension][dimension];
         indiceJoueurActuel=0;
         for(int ligne = 0; ligne < dimension; ++ligne){
             for(int colonne = 0; colonne < dimension; ++colonne){
@@ -242,7 +243,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
     /**
      * L'indice du joueur actuel change, pour le suivant ou le 1er si le précédent était le dernier de la liste.
      */
-    private void passerAuJoueurSuivant(){
+    public void passerAuJoueurSuivant(){
         if(indiceJoueurActuel+1<joueurs.size())
             indiceJoueurActuel++;
         else
