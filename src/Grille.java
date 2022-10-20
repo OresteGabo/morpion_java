@@ -32,6 +32,21 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         }
     }
 
+    /**
+     * L'initialisation du tableau de joueurs
+     * Le tableau doit avoir mon 2 joueurs
+     */
+    public void initialiserJoueurs(){
+        joueurs.clear();
+        try {
+            ajouterJoueur(new Joueur('X'));
+            ajouterJoueur(new Joueur('O'));
+        } catch (JoueurExisteException e) {
+            e.printStackTrace();
+        }
+        
+    }
+
    /**
     * Ajouter un nouveau joueur
     * @param joueur Le nouveau joueur à ajouter
@@ -161,6 +176,7 @@ this.libre = libre;//"." libre doit etre un point, une espace vide, dans le cons
         System.out.println();
 
     }
+
 
     /**
      @param joueur Lettre du joueur(X ou O)
