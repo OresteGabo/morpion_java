@@ -21,19 +21,24 @@ public class Morpion extends JFrame{
 
         //Lire le panneau du contenu et définir ses paramètres
         Container conteneur=getContentPane();
-        conteneur.setLayout(new FlowLayout());
+        conteneur.setLayout(new BorderLayout());
 
         //Définir les champs de texte
         dimensionTF=new JTextField(String.format("%s",grille.getDimension()),5);
-        conteneur.add(dimensionTF);
+
+        JPanel topPanel=new JPanel(new BorderLayout());
+        topPanel.add(new JLabel("Dimension"),BorderLayout.WEST);
+        topPanel.add(dimensionTF,BorderLayout.CENTER);
 
 
 
         reinitialiserButton=new JButton("Réinitialiser");
-        conteneur.add(reinitialiserButton);
+        topPanel.add(reinitialiserButton,BorderLayout.EAST);
+        
+        conteneur.add(topPanel,BorderLayout.NORTH);
 
         bouttons=new JButton[grille.getDimension()][grille.getDimension()];
-        buttonsLayout=new GridLayout(grille.getDimension(), grille.getDimension());
+        buttonsLayout=new GridLayout(grille.getDimension(), grille.getDimension(),3,3);
 
 
         buttonsPanel = new JPanel();
@@ -48,7 +53,6 @@ public class Morpion extends JFrame{
         
         reinitialiserButton.addActionListener(handler);
 
-        buttonsPanel.setBackground(Color.darkGray);
         buttonsPanel.setLayout(buttonsLayout);
         conteneur.add(buttonsPanel);
 
