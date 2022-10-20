@@ -54,6 +54,20 @@ public class InterfaceGraphique extends JFrame{
         conteneur.add(buttonsPanel);
 
     }
+
+    /**
+     * La creation du tableau de boutons,
+     * et le remplissage du tableau avec les boutons
+     */
+    void creerBoutons(){
+        bouttons=new JButton[grille.getDimension()][grille.getDimension()];
+        for(int x=0;x<grille.getDimension();x++){
+            for(int y=0;y<grille.getDimension();y++){
+                bouttons[x][y]=new JButton(String.format("%s",grille.evalCase(x,y)));
+            }
+        }
+    }
+
     /**
      * L'ajout de boutons dans le panel
      * Le panel doit d'abord etre vidé
