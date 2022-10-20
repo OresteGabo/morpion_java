@@ -19,3 +19,6 @@ La saisie se fait sous la console, en saisissant la position du pion (x et y)
 Le plateau est dynamique, il s'adapte à toutes dimensions
 <img alt="Capture d'écran" src="screenshot_bigger_win.jpeg" width="300"/>
 
+Le plateau est graphique et dynamique, il s'adapte à toutes dimensions avec des boutons, et la dimension peu etre changé
+<img alt="Capture d'écran" src="gui.png" width="300"/>
+
